@@ -1,5 +1,5 @@
 // Backend URL - MUST match the URL in manifest.json host_permissions
-const BACKEND_URL = 'https://YOUR_BACKEND_SERVER_URL_GOES_HERE/find-codes';
+const BACKEND_URL = 'https://findforme-production.up.railway.app/find-codes';
 
 // DOM elements
 const findButton = document.getElementById('findButton');

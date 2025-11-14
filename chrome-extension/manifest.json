@@ -7,7 +7,7 @@
     "activeTab"
   ],
   "host_permissions": [
-    "https://YOUR_BACKEND_SERVER_URL_GOES_HERE/*"
+    "https://findforme-production.up.railway.app/*"
   ],
   "action": {
     "default_popup": "popup.html",
