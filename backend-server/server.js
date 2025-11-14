@@ -12,7 +12,7 @@ const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 // Security: Whitelist your Chrome Extension's origin
 // After you load the extension, update this with your actual extension ID
 const allowedOrigins = [
-  'chrome-extension://YOUR_EXTENSION_ID_GOES_HERE',
+  'chrome-extension://depjimohhngkpjihdheflgnmliehgoaj',
   // For development/testing, you can uncomment this (REMOVE in production):
   // 'http://localhost:3000',
 ];
@@ -71,32 +71,33 @@ app.post('/find-codes', async (req, res) => {
     }
 
     // Construct the system prompt
-    const systemPrompt = `You are a helpful assistant that provides promotional code suggestions for e-commerce websites based on your training data knowledge.
+    const systemPrompt = `You are an expert promo code finder. Your sole mission is to find active, valid promo codes for a given domain.
 
-For the domain: ${domain}
+**CRITICAL INSTRUCTIONS:**
+1. **DEEP SEARCH REQUIRED:** You MUST perform multiple searches. Do not stop at the first result.
+2. **PRIORITIZE FORUMS:** You MUST prioritize searching community forums like Reddit. Use search queries like "promo code for ${domain} reddit 2025", "${domain} discount code reddit", "${domain} coupon code site:reddit.com".
+3. **VERIFY VALIDITY:** Scrutinize the search results. Look for:
+   - Recent dates (2024-2025)
+   - User confirmations ("This worked for me!", "Still active")
+   - Specific percentage or dollar amounts
+   - Avoid codes marked as expired or "didn't work"
+4. **JSON OUTPUT ONLY:** You must *only* respond with a valid JSON object. Do not include any explanatory text, markdown formatting, or code blocks. Return raw JSON.
+5. **STRICT FORMAT:** Your response MUST be in this exact format:
+   {
+     "codes": [
+       {
+         "code": "SUMMER25",
+         "description": "25% off entire order (verified on Reddit 2025)"
+       },
+       {
+         "code": "FREESHIP",
+         "description": "Free shipping on orders over $50 (from official site)"
+       }
+     ]
+   }
+6. **EMPTY ON FAILURE:** If you cannot find ANY valid codes after thorough searching, return: { "codes": [] }
 
-**INSTRUCTIONS:**
-1. Based on your knowledge, suggest common promotional codes that are typically used by this brand or website
-2. Include codes that are commonly advertised (like "WELCOME10", "FREESHIP", etc.)
-3. If you know of specific codes from your training data, include them
-4. Be honest - if you don't have recent information about codes for this site, return an empty array
-
-**CRITICAL - JSON OUTPUT ONLY:** 
-You must respond with ONLY a valid JSON object. No explanatory text, no markdown, no code blocks. Just raw JSON.
-
-**STRICT FORMAT:**
-{
-  "codes": [
-    {
-      "code": "EXAMPLE20",
-      "description": "Description of what the code does"
-    }
-  ]
-}
-
-**If no codes available:** { "codes": [] }
-
-Respond now with JSON only:`;
+Now find promo codes for: ${domain}`;
 
     // Make request to OpenAI API
     const openaiResponse = await fetch(OPENAI_API_URL, {
@@ -109,11 +110,16 @@ Respond now with JSON only:`;
         model: 'gpt-4o',
         messages: [
           {
-            role: 'user',
+            role: 'system',
             content: systemPrompt,
           },
         ],
         response_format: { type: 'json_object' },
+        tools: [
+          {
+            type: 'web_search',
+          },
+        ],
         temperature: 0.7,
         max_tokens: 2000,
       }),
