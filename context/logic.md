@@ -18,6 +18,25 @@ This file contains references to detailed logic documentation for different feat
 
 ---
 
+## Deployment & Infrastructure
+
+### Railway Deployment Patterns
+**Description:** Comprehensive guide for deploying Node.js backends in monorepo structures to Railway, including troubleshooting strategies, environment configuration, and platform comparison.
+
+**Reference:** [railway-deployment-patterns.md](./railway-deployment-patterns.md)
+
+**Key Concepts:**
+- Monorepo subdirectory deployment configuration
+- Root Directory vs command chaining approaches
+- Environment variable management patterns
+- Deployment validation with health checks
+- Two-phase client-server security configuration
+- CORS troubleshooting for Chrome extensions
+- Cost optimization for free tier usage
+- Git-based continuous deployment workflow
+
+---
+
 ## Future Logic Documentation
 
 Add new entries here following this format:
