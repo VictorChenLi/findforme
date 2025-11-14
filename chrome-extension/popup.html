@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promo Code Finder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 380px;
+      min-height: 200px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: #667eea;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    #findButton {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 16px;
+    }
+
+    #findButton:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    #findButton:active {
+      transform: translateY(0);
+    }
+
+    #findButton:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    #status {
+      text-align: center;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+
+    #status.loading {
+      display: block;
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+
+    #status.success {
+      display: block;
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+
+    #error {
+      display: none;
+      padding: 12px;
+      background: #ffebee;
+      color: #c62828;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    #error.show {
+      display: block;
+    }
+
+    #results {
+      margin-top: 16px;
+    }
+
+    .code-item {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .code-item:hover {
+      border-color: #667eea;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .code-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #667eea;
+      letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .copy-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #764ba2;
+    }
+
+    .copy-btn.copied {
+      background: #388e3c;
+    }
+
+    .code-description {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 32px 16px;
+      color: #999;
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Promo Code Finder</h1>
+    
+    <button id="findButton">Find Promo Codes</button>
+    
+    <div id="status"></div>
+    <div id="error"></div>
+    
+    <div id="results"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Promo Code Finder",
+  "version": "1.0.0",
+  "description": "Find active promotional codes for the website you're currently visiting",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://YOUR_BACKEND_SERVER_URL_GOES_HERE/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
+
