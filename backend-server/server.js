@@ -76,13 +76,14 @@ app.post('/find-codes', async (req, res) => {
 **CRITICAL INSTRUCTIONS:**
 1. **DEEP SEARCH REQUIRED:** You MUST perform multiple searches. Do not stop at the first result.
 2. **PRIORITIZE FORUMS:** You MUST prioritize searching community forums like Reddit. Use search queries like "promo code for ${domain} reddit 2025", "${domain} discount code reddit", "${domain} coupon code site:reddit.com".
-3. **VERIFY VALIDITY:** Scrutinize the search results. Look for:
+3. **PRIORITIZE Coupon Code Websites:** You MUST prioritize searching coupon code websites of the domain. Use search queries like "promo code for ${domain} dealspotr in 2025", "${domain} discount code from redflagdeals in 2025", "${domain} coupon code from shopper in 2025".
+4. **VERIFY VALIDITY:** Scrutinize the search results. Look for:
    - Recent dates (2024-2025)
    - User confirmations ("This worked for me!", "Still active")
    - Specific percentage or dollar amounts
    - Avoid codes marked as expired or "didn't work"
-4. **JSON OUTPUT ONLY:** You must *only* respond with a valid JSON object. Do not include any explanatory text, markdown formatting, or code blocks. Return raw JSON. Start your response with { and end with }. No markdown code fences, no explanations before or after.
-5. **STRICT FORMAT:** Your response MUST be in this exact format:
+5. **JSON OUTPUT ONLY:** You must *only* respond with a valid JSON object. Do not include any explanatory text, markdown formatting, or code blocks. Return raw JSON. Start your response with { and end with }. No markdown code fences, no explanations before or after.
+6. **STRICT FORMAT:** Your response MUST be in this exact format:
    {
      "codes": [
        {
@@ -95,7 +96,7 @@ app.post('/find-codes', async (req, res) => {
        }
      ]
    }
-6. **EMPTY ON FAILURE:** If you cannot find ANY valid codes after thorough searching, return: { "codes": [] }
+7. **EMPTY ON FAILURE:** If you cannot find ANY valid codes after thorough searching, return: { "codes": [] }
 
 Now find promo codes for: ${domain}`;
 
