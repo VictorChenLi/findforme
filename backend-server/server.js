@@ -81,7 +81,7 @@ app.post('/find-codes', async (req, res) => {
    - User confirmations ("This worked for me!", "Still active")
    - Specific percentage or dollar amounts
    - Avoid codes marked as expired or "didn't work"
-4. **JSON OUTPUT ONLY:** You must *only* respond with a valid JSON object. Do not include any explanatory text, markdown formatting, or code blocks. Return raw JSON.
+4. **JSON OUTPUT ONLY:** You must *only* respond with a valid JSON object. Do not include any explanatory text, markdown formatting, or code blocks. Return raw JSON. Start your response with { and end with }. No markdown code fences, no explanations before or after.
 5. **STRICT FORMAT:** Your response MUST be in this exact format:
    {
      "codes": [
@@ -100,6 +100,8 @@ app.post('/find-codes', async (req, res) => {
 Now find promo codes for: ${domain}`;
 
     // Make request to OpenAI API
+    // Using gpt-4o-search-preview model which automatically performs web search
+    // No need for tools array - the model has built-in web search capabilities
     const openaiResponse = await fetch(OPENAI_API_URL, {
       method: 'POST',
       headers: {
@@ -107,20 +109,13 @@ Now find promo codes for: ${domain}`;
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4o',
+        model: 'gpt-4o-search-preview',
         messages: [
           {
             role: 'system',
             content: systemPrompt,
           },
         ],
-        response_format: { type: 'json_object' },
-        tools: [
-          {
-            type: 'web_search',
-          },
-        ],
-        temperature: 0.7,
         max_tokens: 2000,
       }),
     });
@@ -149,11 +144,24 @@ Now find promo codes for: ${domain}`;
     }
 
     // Parse the JSON response
+    // Handle cases where JSON might be wrapped in markdown code blocks
+    let cleanedContent = content.trim();
+    // Remove markdown code fences if present
+    if (cleanedContent.startsWith('```')) {
+      cleanedContent = cleanedContent.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
+    }
+    // Extract JSON object if there's text before/after
+    const jsonMatch = cleanedContent.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      cleanedContent = jsonMatch[0];
+    }
+    
     let parsedResponse;
     try {
-      parsedResponse = JSON.parse(content);
+      parsedResponse = JSON.parse(cleanedContent);
     } catch (parseError) {
       console.error('Failed to parse OpenAI response:', content);
+      console.error('Parse error:', parseError.message);
       return res.status(500).json({
         error: 'Parse error',
         message: 'Failed to parse AI response',
