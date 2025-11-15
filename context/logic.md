@@ -37,6 +37,22 @@ This file contains references to detailed logic documentation for different feat
 
 ---
 
+## OpenAI Integration
+
+### Web Search Implementation with gpt-4o-search-preview
+**Description:** Implementation of OpenAI's web search capabilities using the search-preview model for automatic web search without tool configuration, enabling promo code discovery from Reddit and social platforms.
+
+**Reference:** [openai-web-search-implementation.md](./openai-web-search-implementation.md)
+
+**Key Concepts:**
+- gpt-4o-search-preview model for automatic web search
+- Chat Completions API integration (no migration needed)
+- System prompt engineering for search guidance
+- JSON response format enforcement
+- Comparison with Responses API approach
+
+---
+
 ## Future Logic Documentation
 
 Add new entries here following this format:
