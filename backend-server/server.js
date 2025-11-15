@@ -76,7 +76,6 @@ app.post('/find-codes', async (req, res) => {
 **CRITICAL INSTRUCTIONS:**
 1. **DEEP SEARCH REQUIRED:** You MUST perform multiple searches. Do not stop at the first result.
 2. **PRIORITIZE FORUMS:** You MUST prioritize searching community forums like Reddit. Use search queries like "promo code for ${domain} reddit 2025", "${domain} discount code reddit", "${domain} coupon code site:reddit.com".
-3. **PRIORITIZE Coupon Code Websites:** You MUST prioritize searching coupon code websites of the domain. Use search queries like "promo code for ${domain} dealspotr in 2025", "${domain} discount code from redflagdeals in 2025", "${domain} coupon code from shopper in 2025".
 4. **VERIFY VALIDITY:** Scrutinize the search results. Look for:
    - Recent dates (2024-2025)
    - User confirmations ("This worked for me!", "Still active")
