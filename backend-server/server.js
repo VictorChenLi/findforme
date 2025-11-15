@@ -76,6 +76,7 @@ app.post('/find-codes', async (req, res) => {
 **CRITICAL INSTRUCTIONS:**
 1. **DEEP SEARCH REQUIRED:** You MUST perform multiple searches. Do not stop at the first result.
 2. **PRIORITIZE FORUMS:** You MUST prioritize searching community forums like Reddit. Use search queries like "promo code for ${domain} reddit 2025", "${domain} discount code reddit", "${domain} coupon code site:reddit.com".
+3. **SEARCH OTHER FORUMS:** In addition to Reddit, you MUST search for promo codes on other community forums and discussion boards (e.g., RedFlagDeals, Slickdeals, FatWallet, etc.). Use search queries like "promo code for ${domain} slickdeals", "${domain} discount code forums 2025", "${domain} promo code community discussion".
 4. **VERIFY VALIDITY:** Scrutinize the search results. Look for:
    - Recent dates (2024-2025)
    - User confirmations ("This worked for me!", "Still active")
